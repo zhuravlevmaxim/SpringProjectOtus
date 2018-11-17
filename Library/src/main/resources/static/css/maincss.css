@@ -1,0 +1,54 @@
+.root{
+    width: 90%;
+    height: 100%;
+    border: 2px solid black;
+    margin: 10px auto;
+}
+.searchBook{
+    width: 80%;
+    margin: 10px auto;
+    padding: 5px;
+}
+input{
+    width: 80%;
+}
+.btn{
+    margin: 5px;
+}
+.listGenre{
+    width: 200px;
+    float: left;
+    top: 50px;
+    margin: 5px;
+}
+.centre{
+    width: 450px;
+    float: left;
+    margin: 10px 20px;
+}
+.itemBook{
+    border: 1px solid blue;
+    margin: 5px;
+    padding: 5px;
+}
+.imgDiv{
+    text-align: center;
+    border: 1px dashed cornflowerblue;
+    margin: 5px;
+}
+.buttonsDiv{
+    text-align: center;
+}
+.footer{
+    clear: both;
+    margin: 5px auto;
+}
+.footerP{
+    text-align: center;
+}
+h2{
+    text-align: center;
+}
+.imgDiv{
+    margin: 0 auto;
+}

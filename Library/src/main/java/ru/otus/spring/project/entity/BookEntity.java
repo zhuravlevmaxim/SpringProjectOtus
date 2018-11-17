@@ -1,6 +1,7 @@
 package ru.otus.spring.project.entity;
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -16,13 +17,15 @@ public class BookEntity {
     private byte[] image;
     private String descr;
     private AuthorEntity authorByAuthorId;
+    private long genreId;
+    private long publisherId;
 
     public BookEntity() {
     }
 
     public BookEntity(long id, String name, byte[] content, int pageCount,
                       String isbn, int publishYear, byte[] image,
-                      String descr, AuthorEntity authorByAuthorId) {
+                      String descr, AuthorEntity authorByAuthorId, long genreId, long publisherId) {
         this.id = id;
         this.name = name;
         this.content = content;
@@ -32,11 +35,23 @@ public class BookEntity {
         this.image = image;
         this.descr = descr;
         this.authorByAuthorId = authorByAuthorId;
+        this.genreId = genreId;
+        this.publisherId = publisherId;
     }
 
-    public BookEntity(long id, String name, int pageCount, String isbn, int publishYear, byte[] image, String descr, AuthorEntity authorByAuthorId) {
-        this(id, name, null, pageCount, isbn, publishYear, image, descr, authorByAuthorId);
+    public BookEntity(long id, String name, int pageCount,
+                      String isbn, int publishYear, String descr,
+                      AuthorEntity authorByAuthorId, long genreId, long publisherId) {
+        this(id, name, null, pageCount, isbn, publishYear, null, descr, authorByAuthorId, genreId, publisherId);
     }
+
+    public BookEntity(long id, String name, int pageCount, String isbn, int publishYear, byte[] image, String descr, AuthorEntity authorByAuthorId, long genreId, long publisherId) {
+        this(id, name, null, pageCount, isbn, publishYear, image, descr, authorByAuthorId, genreId, publisherId);
+    }
+
+    //    public BookEntity(Blob content) {
+//        this(0, null, content, 0, null, 0, null, null, null);
+//    }
 
     @Id
     @Column(name = "id")
@@ -58,7 +73,8 @@ public class BookEntity {
         this.name = name;
     }
 
-    @Basic
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
     @Column(name = "content")
     public byte[] getContent() {
         return content;
@@ -98,7 +114,8 @@ public class BookEntity {
         this.publishYear = publishYear;
     }
 
-    @Basic
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
     @Column(name = "image")
     public byte[] getImage() {
         return image;
@@ -126,6 +143,26 @@ public class BookEntity {
 
     public void setAuthorByAuthorId(AuthorEntity authorByAuthorId) {
         this.authorByAuthorId = authorByAuthorId;
+    }
+
+    @Basic
+    @Column(name = "genre_id")
+    public void setGenreId(Long genreId) {
+        this.genreId = genreId;
+    }
+
+    public Long getGenreId() {
+        return genreId;
+    }
+
+    @Basic
+    @Column(name = "publisher_id")
+    public void setPublisherId(Long publisherId) {
+        this.publisherId = publisherId;
+    }
+
+    public Long getPublisherId() {
+        return publisherId;
     }
 
     @Override
@@ -162,8 +199,10 @@ public class BookEntity {
                 ", publishYear=" + publishYear +
                 ", descr='" + descr + '\'' +
                 ", imageSize='" + image != null ? String.valueOf(image.length) : 0 + '\'' +
-                ", contentSize='" + content != null ? String.valueOf(content.length) : 0 + '\'' +
+                ", content='" + content + '\'' +
                 ", authorByAuthorId=" + authorByAuthorId +
+                ", genreId=" + genreId +
+                ", publisherId=" + publisherId +
                 '}';
     }
 }

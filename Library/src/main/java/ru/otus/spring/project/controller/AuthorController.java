@@ -7,7 +7,8 @@ import ru.otus.spring.project.service.AuthorService;
 
 import java.util.List;
 
-@RestController("/author")
+@RestController
+@RequestMapping("/author")
 public class AuthorController {
 
     private AuthorService authorService;
@@ -27,8 +28,8 @@ public class AuthorController {
         return authorService.findById(id);
     }
 
-    @DeleteMapping
-    public void deleteById(@RequestParam Long id) {
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Long id) {
         authorService.deleteById(id);
     }
 }

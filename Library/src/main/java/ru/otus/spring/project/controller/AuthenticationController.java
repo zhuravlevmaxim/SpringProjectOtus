@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AuthenticationController {
 
-    @RequestMapping("loginpage")
+    @RequestMapping("/loginpage")
     public String loginPage() {
         return "/loginpage";
     }
 
-    @RequestMapping()
+    @RequestMapping("/failpage")
     public String failPage() {
         return "/failpage";
     }

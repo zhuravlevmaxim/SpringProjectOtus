@@ -15,9 +15,6 @@ import java.util.List;
 //@EnableHystrixDashboard
 public class Main {
     public static void main(String[] args) {
-        List<BookEntity> books = SpringApplication.run(Main.class, args).getBean(BookRepository.class).findAllWithOutContent();
-        books.stream().forEach(book -> {
-            System.out.println(book.getImage().length);
-        });
+        SpringApplication.run(Main.class, args);
     }
 }

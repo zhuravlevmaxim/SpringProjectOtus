@@ -7,7 +7,8 @@ import ru.otus.spring.project.service.GenreService;
 
 import java.util.List;
 
-@RestController("/genre")
+@RestController
+@RequestMapping("/genre")
 public class GenreController {
 
     private GenreService genreService;
@@ -27,8 +28,8 @@ public class GenreController {
         return genreService.findById(id);
     }
 
-    @DeleteMapping
-    public void deleteById(@RequestParam Long id) {
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Long id) {
         genreService.deleteById(id);
     }
 }

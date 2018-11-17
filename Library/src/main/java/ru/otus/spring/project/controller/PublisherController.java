@@ -7,7 +7,8 @@ import ru.otus.spring.project.service.PublisherService;
 
 import java.util.List;
 
-@RestController("/publisher")
+@RestController
+@RequestMapping("/publisher")
 public class PublisherController {
 
     private PublisherService publisherService;
@@ -27,8 +28,8 @@ public class PublisherController {
         return publisherService.findById(id);
     }
 
-    @DeleteMapping
-    public void deleteById(@RequestParam Long id) {
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Long id) {
         publisherService.deleteById(id);
     }
 }
