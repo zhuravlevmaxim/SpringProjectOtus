@@ -49,9 +49,9 @@ public class BookEntity {
         this(id, name, null, pageCount, isbn, publishYear, image, descr, authorByAuthorId, genreId, publisherId);
     }
 
-    //    public BookEntity(Blob content) {
-//        this(0, null, content, 0, null, 0, null, null, null);
-//    }
+    public BookEntity(long id, String name, byte[] content) {
+        this(id, name, content, 0, null, 0, null, null, null, 0, 0);
+    }
 
     @Id
     @Column(name = "id")
@@ -198,7 +198,7 @@ public class BookEntity {
                 ", isbn='" + isbn + '\'' +
                 ", publishYear=" + publishYear +
                 ", descr='" + descr + '\'' +
-                ", imageSize='" + image != null ? String.valueOf(image.length) : 0 + '\'' +
+                ", image='" + image + '\'' +
                 ", content='" + content + '\'' +
                 ", authorByAuthorId=" + authorByAuthorId +
                 ", genreId=" + genreId +

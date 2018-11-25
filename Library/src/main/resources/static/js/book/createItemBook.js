@@ -61,7 +61,7 @@ function createItemBook(book) {
     buttonsDiv.setAttribute("class", "buttonsDiv");
     var downloadBookBtn = document.createElement("button");
     downloadBookBtn.setAttribute("class", "btn");
-    downloadBookBtn.innerHTML = "Download book";
+    downloadBookBtn.innerHTML = "Read book";
     downloadBookBtn.onclick = () => {
         downloadBook(book)
     };
@@ -92,8 +92,21 @@ function createItemBook(book) {
     document.getElementById("centre").appendChild(itemBookDiv);
 
     function downloadBook(book){
-        console.log("CLICK DOWNLOAD BOOK!");
-        console.log(book);
+        $.ajax({
+            type : "GET",
+            contentType : "application/json",
+            url : "/book/" + book.id +"/getcontent",
+            dataType : "json",
+            success : function(result) {
+                console.log("success get content book!");
+                let pdfWindow = window.open("")
+                pdfWindow.document.write("<iframe width='100%' height='100%' src='data:application/pdf;base64, " +
+                    encodeURI(result.content)+"'></iframe>");
+            },
+            error : function(e) {
+                console.log("ERROR: ", e);
+            }
+        });
     }
 
     function editBook(book){
@@ -109,6 +122,7 @@ function createItemBook(book) {
             dataType : "json",
             success : function(result) {
                 console.log("success delete book!");
+                createListBook(getAllBook());
             },
             error : function(e) {
                 console.log("ERROR: ", e);

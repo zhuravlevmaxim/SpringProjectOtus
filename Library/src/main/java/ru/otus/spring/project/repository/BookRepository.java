@@ -11,7 +11,7 @@ public interface BookRepository extends CrudRepository<BookEntity, Long> {
 
     @Query("SELECT " +
             "new BookEntity(book.id, book.name, book.pageCount, book.isbn, book.publishYear, " +
-            "book.descr, book.authorByAuthorId, book.genreId, book.publisherId)" +
+            " book.image, book.descr, book.authorByAuthorId, book.genreId, book.publisherId)" +
             " FROM BookEntity book")
     List<BookEntity> findAll();
 
@@ -24,11 +24,11 @@ public interface BookRepository extends CrudRepository<BookEntity, Long> {
 
     @Query("SELECT " +
             "new BookEntity(book.id, book.name, book.pageCount, book.isbn, book.publishYear, " +
-            "book.descr, book.authorByAuthorId, book.genreId, book.publisherId)" +
+            " book.image, book.descr, book.authorByAuthorId, book.genreId, book.publisherId)" +
             " FROM BookEntity book" +
             " WHERE book.name LIKE %:name%")
     List<BookEntity> findAllByName(@Param("name") String name);
 
-//    @Query("SELECT new BookEntity(book.content) FROM BookEntity book WHERE book.id = :id")
-//    BookEntity findContentById(@Param("id") Long id);
+    @Query("SELECT new BookEntity(book.id, book.name, book.content) FROM BookEntity book WHERE book.id = :id")
+    BookEntity findContentById(@Param("id") Long id);
 }

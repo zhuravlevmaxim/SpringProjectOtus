@@ -1,10 +1,13 @@
 package ru.otus.spring.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.otus.spring.project.entity.BookEntity;
 import ru.otus.spring.project.service.BookService;
 
+import javax.servlet.http.HttpServletResponse;
+import java.awt.print.Book;
 import java.util.List;
 
 @RestController
@@ -49,8 +52,20 @@ public class BookController {
         bookService.editBookById(book);
     }
 
-//    @GetMapping("/{id}/getcontent")
-//    public @ResponseBody BookEntity getContent(@PathVariable Long id) {
-//        return bookService.getContentById(id);
-//    }
+    @GetMapping("/{id}/getcontent")
+    public BookEntity findContentById(@PathVariable Long id, HttpServletResponse response) {
+//        BookEntity book =
+        return bookService.findContentById(id);
+//        byte[] content = book.getContent();
+//        try {
+//            response.setHeader("Content-Disposition", "inline; filename=\"" + book.getName() + ".pdf\"");
+//            response.setDateHeader("Expires", -1);
+//            response.setContentType("application/pdf");
+//            response.setContentLength(content.length);
+//            response.getOutputStream().write(content);
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return ResponseEntity.ok("ok");
+    }
 }

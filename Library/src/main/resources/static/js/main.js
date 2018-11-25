@@ -2,6 +2,13 @@ function main() {
 
     var rootDiv = document.getElementById("root");
 
+    var exitDIV = document.createElement("div");
+    var exitA = document.createElement("a")
+    exitA.href = "/logout";
+    exitA.innerHTML = "Exit";
+    exitDIV.appendChild(exitA);
+    rootDiv.appendChild(exitDIV);
+
     var searchBookDIV = document.createElement("div");
     searchBookDIV.setAttribute("id", "searchBook");
     searchBookDIV.setAttribute("class", "searchBook");
