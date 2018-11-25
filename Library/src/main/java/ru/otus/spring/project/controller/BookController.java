@@ -44,6 +44,11 @@ public class BookController {
         bookService.deleteBookById(id);
     }
 
+    @PostMapping("/editbook")
+    public void editBook(@RequestBody BookEntity book) {
+        bookService.editBookById(book);
+    }
+
 //    @GetMapping("/{id}/getcontent")
 //    public @ResponseBody BookEntity getContent(@PathVariable Long id) {
 //        return bookService.getContentById(id);

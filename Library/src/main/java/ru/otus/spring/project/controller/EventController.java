@@ -1,15 +1,25 @@
 package ru.otus.spring.project.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.otus.spring.project.domain.Event;
+import ru.otus.spring.project.service.EventService;
 
-//@RestController
-//@RequestMapping("/event")
+@RestController
+@RequestMapping("/event")
 public class EventController {
 
-    //@PostMapping
-    //public @ResponseBody ResponseEntity<String> event(@RequestBody String str) {
-    //    System.out.println(str);
-    //    return ResponseEntity.ok("OK");
-    //}
+    private EventService eventService;
+
+    @Autowired
+    public EventController(EventService eventService) {
+        this.eventService = eventService;
+    }
+
+    @PostMapping
+    public @ResponseBody ResponseEntity<String> event(@RequestBody Event event) {
+        eventService.saveEvent(event);
+        return ResponseEntity.ok("OK");
+    }
 }

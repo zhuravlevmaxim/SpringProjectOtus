@@ -34,12 +34,22 @@ function createItemBook(book) {
     infoBookDiv.appendChild(isbnP);
 
     var publishYearP = document.createElement("p");
-    publishYearP.innerHTML = "Год издания: " + book.isbn;
+    publishYearP.innerHTML = "Год издания: " + book.publishYear;
     infoBookDiv.appendChild(publishYearP);
 
     var authorP = document.createElement("p");
     authorP.innerHTML = "Автор: " + book.authorByAuthorId.fio;
     infoBookDiv.appendChild(authorP);
+
+    var genreP = document.createElement("p");
+    var genre = getGenreById(book.genreId);
+    genreP.innerHTML = "Жанр: " + genre.name;
+    infoBookDiv.appendChild(genreP);
+
+    var publisherP = document.createElement("p");
+    var publisher = getPublisherById(book.publisherId);
+    publisherP.innerHTML = "Издательство: " + publisher.name;
+    infoBookDiv.appendChild(publisherP);
 
     var descrP = document.createElement("p");
     descrP.innerHTML = "Описание: " + book.descr;
@@ -49,14 +59,14 @@ function createItemBook(book) {
 
     var buttonsDiv = document.createElement("div");
     buttonsDiv.setAttribute("class", "buttonsDiv");
-    var showBookBtn = document.createElement("button");
-    showBookBtn.setAttribute("class", "btn");
-    showBookBtn.innerHTML = "Show book";
-    showBookBtn.onclick = () => {
-        showBook(book)
+    var downloadBookBtn = document.createElement("button");
+    downloadBookBtn.setAttribute("class", "btn");
+    downloadBookBtn.innerHTML = "Download book";
+    downloadBookBtn.onclick = () => {
+        downloadBook(book)
     };
-    showBookBtn.addEventListener("mouseover", eventListenerFunction);
-    buttonsDiv.appendChild(showBookBtn);
+    downloadBookBtn.addEventListener("mouseover", eventListenerFunction);
+    buttonsDiv.appendChild(downloadBookBtn);
     itemBookDiv.appendChild(buttonsDiv);
 
     var editBookBtn = document.createElement("button");
@@ -81,14 +91,14 @@ function createItemBook(book) {
 
     document.getElementById("centre").appendChild(itemBookDiv);
 
-    function showBook(book){
-        console.log("CLICK SHOW BOOK!");
+    function downloadBook(book){
+        console.log("CLICK DOWNLOAD BOOK!");
         console.log(book);
     }
 
     function editBook(book){
-        console.log("CLICK EDIT BOOK!");
-        console.log(book);
+        console.log("click edit book!");
+        createEditBook(book);
     }
 
     function deleteBook(book){

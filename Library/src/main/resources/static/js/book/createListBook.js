@@ -1,9 +1,6 @@
 function createListBook(listBook) {
 
-    var listBookDiv = document.getElementById("centre");
-    while (listBookDiv.firstChild) {
-        listBookDiv.removeChild(listBookDiv.firstChild);
-    }
+    removeAllChildById("centre");
     if(Array.isArray(listBook)) {
         listBook.forEach(function (book) {
             createItemBook(book);

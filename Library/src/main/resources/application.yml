@@ -9,3 +9,14 @@ spring:
                 hibernate:
                         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         hibernate.ddl-auto: update
+    data:
+        mongodb:
+              authentication: none
+              database: spring-project-otus
+              port: 27017
+              host: localhost
+management:
+    endpoints:
+          web:
+            exposure:
+                  include: "*"
